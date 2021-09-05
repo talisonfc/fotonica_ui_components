@@ -5,7 +5,16 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/annotations/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/annotations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/annotations/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/generators/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/generators/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/generators/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
