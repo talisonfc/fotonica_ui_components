@@ -2,87 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// ```dart
-///
-/// String text = "";
-///
-/// final input1 = SascarTextField(
-///             label: "Label 1",
-///             placeholder: "Placeholder",
-///             controller: TextEditingController(text: text),
-///             onChange: (v){
-///                text = v;
-///              },
-///             focusNode: FocusNode(),
-///           );
-///   final input2 = SascarTextField(
-///             label: "Numero",
-///             placeholder: "Número",
-///             type: TextInputType.number,
-///             focusNode: FocusNode(),
-///           );
-/// final input2 = SascarTextField(
-///             label: "Date time",
-///             placeholder: "Date time",
-///             type: TextInputType.datetime,
-///             focusNode: FocusNode(),
-///           );
-/// final input3 = SascarTextField(
-///             label: "Telefone",
-///             placeholder: "Phone",
-///             type: TextInputType.phone,
-///             focusNode: FocusNode(),
-///           );
-/// final input4 = SascarTextField(
-///             label: "URL",
-///             placeholder: "URL",
-///             type: TextInputType.url,
-///             focusNode: FocusNode(),
-///           );
-///
-///
-/// final input5 = SascarTextField(
-///             label: "Pesquisar",
-///             placeholder: "Pesquisar",
-///             suffixIcon: IconButton(
-///                 icon: Icon(SascarIcons.search), focusNode: FocusNode()),
-///           );
-/// final input6 = SascarTextField(
-///             label: "Multiplos icones",
-///             placeholder: "Pesquisar",
-///             maxLines: 1,
-///             focusNode: FocusNode(),
-///             suffixIcon: Wrap(
-///               children: [
-///                 IconButton(
-///                     icon: Icon(SascarIcons.arrows_cw),
-///                     onPressed: () {
-///                       print("icone 1");
-///                     }),
-///                 IconButton(
-///                     icon: Icon(SascarIcons.calendar),
-///                     onPressed: () {
-///                       print("icone 2");
-///                     })
-///               ],
-///             ),
-///           );
-///
-/// final input7 = SascarTextField(
-///             label: "Email",
-///             placeholder: "Email",
-///             prefixIcon: Icon(SascarIcons.agendar_email),
-///             type: TextInputType.emailAddress
-///           );
-/// final input8 = SascarTextField(
-///             label: "Senha",
-///             obscureText: true,
-///             maxLines: 1,
-///             prefixIcon: Icon(SascarIcons.lock),
-///           );
-/// ```
-// @docWidget
-
 typedef String? ValidateFunction(String? s);
 
 typedef Widget? BuildCounterFunction(BuildContext,
@@ -91,8 +10,8 @@ typedef Widget? BuildCounterFunction(BuildContext,
 class FotonicaTextField extends StatefulWidget {
   final String? label;
   final String? placeholder;
-  final TextEditingController controller;
-  final Function(String) onChange;
+  final TextEditingController? controller;
+  final Function(String)? onChange;
   final TextInputType? type;
   final TextStyle? textStyle;
   final TextStyle? textStyleLabel;
@@ -125,9 +44,9 @@ class FotonicaTextField extends StatefulWidget {
   FotonicaTextField({Key? key,
     this.label,
     this.placeholder,
-    required this.controller,
+    this.controller,
     this.autovalidateMode = AutovalidateMode.disabled,
-    required this.onChange,
+    this.onChange,
     this.type,
     this.textStyle,
     this.textStyleLabel,
@@ -138,7 +57,7 @@ class FotonicaTextField extends StatefulWidget {
     this.readOnly = false,
     this.obscureText = false,
     this.suffixIcon,
-    this.filled = true,
+    this.filled = false,
     this.prefixIcon,
     this.initialValue,
     this.suffix,
@@ -265,8 +184,8 @@ class _FotonicaTextField extends State<FotonicaTextField> {
                 filled: widget.filled,
                 fillColor: Colors.white,
                 focusColor: Colors.white,
-                // suffixIcon: suffixIcon,
-                // suffix: suffixIcon,
+                suffixIcon: widget.suffixIcon,
+                suffix: widget.suffix,
                 errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(widget.radius),
                   borderSide: BorderSide(color: Theme
@@ -309,9 +228,7 @@ class _FotonicaTextField extends State<FotonicaTextField> {
               maxLength: widget.maxLength,
               buildCounter: widget.buildCounter,
             ),
-          ),
-          if (widget.suffixIcon != null)
-            Container(color: Colors.white, child: widget.suffixIcon)
+          )
         ]),
       ),
     );

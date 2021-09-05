@@ -1,4 +1,5 @@
 import 'package:build/build.dart';
+import 'package:generators/doc_builder.dart';
 import 'package:generators/src/code_snapshot_generator.dart';
 import 'package:generators/src/extension_generator.dart';
 import 'package:generators/src/subclass_generator.dart';
@@ -12,3 +13,6 @@ Builder generateSubclass(BuilderOptions options) =>
 
 Builder generateCodeSnapshot(BuilderOptions options) =>
     SharedPartBuilder([CodeSnaphostGeneretor()], "code_snapshot_generator");
+
+// Builder generateCodeSnapshot(BuilderOptions options) =>
+//     LibraryBuilder(CodeSnaphostGeneretor(), generatedExtension: "_doc.dart");

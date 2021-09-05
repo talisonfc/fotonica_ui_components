@@ -1,6 +1,7 @@
-import 'package:annotations/annotations.dart';
-import 'package:example/example.dart';
-import 'package:example/examples/buttons_example.dart';
+import 'package:example/doc_item.dart';
+import 'package:example/examples/buttons_examples.dart';
+import 'package:example/examples/form_examples.dart';
+import 'package:example/examples/text_field_examples.dart';
 import 'package:example/playground.dart';
 import 'package:flutter/material.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
@@ -13,17 +14,27 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  List<DocItem> docItems = [
+    DocItem(
+        icon: Icon(Icons.smart_button),
+        name: "Buttons",
+        example: ButtonsExamples()),
+    DocItem(
+        icon: Icon(Icons.text_fields),
+        name: "Text Fields",
+        example: TextFieldExamples()),
+    DocItem(
+        icon: Icon(Icons.format_indent_increase_sharp),
+        name: "Forms",
+        example: FormExamples())
+  ];
 
-  late Example current;
-
-  Map<String, Example> previews = {
-    "buttons": ButtonsExample()
-  };
+  late DocItem currentDocItem;
 
   @override
   void initState() {
     super.initState();
-    current = previews.values.first;
+    currentDocItem = docItems.first;
   }
 
   @override
@@ -42,11 +53,18 @@ class HomeState extends State<Home> {
             child: Drawer(
               child: ListView.builder(
                 itemBuilder: (ctx, i) {
+                  DocItem item = docItems[i];
                   return ListTile(
-                    title: Text("item $i"),
+                    leading: item.icon,
+                    title: Text(item.name),
+                    onTap: () {
+                      setState(() {
+                        currentDocItem = item;
+                      });
+                    },
                   );
                 },
-                itemCount: 40,
+                itemCount: docItems.length,
               ),
             ),
           ),
@@ -55,8 +73,8 @@ class HomeState extends State<Home> {
               padding: EdgeInsets.all(16),
               children: [
                 Playground(
-                  code: ButtonsExampleSourceCode().sourceCode,
-                  preview: ButtonsExample(),
+                  code: currentDocItem.example.code,
+                  preview: currentDocItem.example,
                 )
               ],
             ),

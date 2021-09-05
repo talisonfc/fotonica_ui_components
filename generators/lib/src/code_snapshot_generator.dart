@@ -13,10 +13,16 @@ class CodeSnaphostGeneretor extends GeneratorForAnnotation<CodeSnapshotAnnotatio
     WidgetVisitor visitor = WidgetVisitor();
     element.visitChildren(visitor);
 
+    // extension ButtonsExampleSC on ButtonsExample {
+    //   get sourceCode {
+    //     return "";
+    //   }
+    // }
+
     // element.source;
     StringBuffer classBuffer = new StringBuffer();
-    classBuffer.writeln("class ${visitor.className}SourceCode{");
-    classBuffer.writeln("String sourceCode = ${visitor.sourceCode};");
+    classBuffer.writeln("extension ${visitor.className}SourceCode on ${visitor.className} {");
+    classBuffer.writeln("get sourceCode { return ${visitor.sourceCode};}");
     classBuffer.writeln("}");
     return classBuffer.toString();
   }
