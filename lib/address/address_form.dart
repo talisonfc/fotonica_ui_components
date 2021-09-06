@@ -32,6 +32,10 @@ class AddressForm extends StatelessWidget {
           onChange: (cep) {
             viaCepAddress!.cep = cep;
           },
+          suffixIcon: IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
         ),
         FotonicaTextField(
           label: "Cidade",

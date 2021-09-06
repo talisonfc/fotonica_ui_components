@@ -18,12 +18,21 @@ class AddressExamples extends Example {
 }
 
 class AddressExamplesState extends State<AddressExamples> {
+  ViaCepAddress viaCepAddress = ViaCepAddress();
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
       children: [
-        FotonicaAddress(viaCepAddress: ViaCepAddress(), onChange: (v) {})
+        FotonicaAddress(
+            viaCepAddress: viaCepAddress,
+            onChange: (v) {
+              if (v != null)
+                setState(() {
+                  viaCepAddress = v;
+                });
+            })
       ],
     );
   }
