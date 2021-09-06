@@ -27,10 +27,17 @@ class ButtonsExamplesState extends State<ButtonsExamples>{
   @override
   Widget build(BuildContext context) {
 
-    return ListView(
-      shrinkWrap: true,
+    return Column(
       children: [
         FotonicaElevatedButton(label: "Toque aqui", onPressed: () async {
+          // simulate a request
+          return Future.delayed(Duration(seconds: 2));
+        }),
+        FotonicaElevatedButton(
+          color: Theme.of(context).primaryColor,
+            labelColor: Colors.white,
+            icon: Icon(Icons.house),
+            label: "Toque aqui", onPressed: () async {
           // simulate a request
           return Future.delayed(Duration(seconds: 2));
         }),

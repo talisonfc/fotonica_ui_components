@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fotonica_ui_components/address/address_controller.dart';
 import 'package:fotonica_ui_components/address/address_form.dart';
 import 'package:fotonica_ui_components/address/via_cep_address.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
@@ -24,9 +24,9 @@ enum AddressState { cep, requestAddressByCep, form }
 
 class CepInputState extends State<CepInput> {
   GlobalKey<FormState> _cepState = GlobalKey<FormState>();
-  Dio viaCepApi = Dio(BaseOptions(baseUrl: "https://viacep.com.br/ws/"));
   ViaCepAddress? _address;
   StreamController<AddressState> _steps = StreamController();
+  AddressController controller = AddressController();
 
   @override
   void initState() {
@@ -42,17 +42,17 @@ class CepInputState extends State<CepInput> {
   }
 
   void readAddresByCep() {
-    String? cep = _address!.cep;
-    viaCepApi.get("$cep/json").then((response) {
-      _address = ViaCepAddress.fromJson(response.data);
-      _steps.add(AddressState.form);
-      // widget.onChange(_address);
-    }).catchError((err) {
-      _address = ViaCepAddress();
-      _steps.add(AddressState.form);
-      FotonicaSnackbar.erro(
-          context: context, content: Text("Endereço não encontrado!"));
-    });
+    if(_address!.cep != null && _address!.cep!.isNotEmpty) {
+      controller.readAddresByCep(_address!.cep!).then((address) {
+        _address = address;
+        _steps.add(AddressState.form);
+      }).catchError((err) {
+        _address = ViaCepAddress();
+        _steps.add(AddressState.form);
+        FotonicaSnackbar.erro(
+            context: context, content: Text("Endereço não encontrado!"));
+      });
+    }
   }
 
   @override
@@ -102,18 +102,17 @@ class CepInputState extends State<CepInput> {
                         Form(
                           key: _cepState,
                           child: FotonicaTextField(
-                            initialValue: _address?.cep ?? "",
+                            initialValue: _address?.cep,
                             placeholder: "CEP",
-                            controller: TextEditingController(
-                                text: _address?.cep ?? ""),
                             type: TextInputType.number,
                             validator: (cep) {
-                              if (cep == null || cep.isEmpty) return "Digite um CEP valido";
+                              if (cep == null || cep.isEmpty)
+                                return "Digite um CEP valido";
                               return null;
                             },
                             onChange: (cep) {
-                                _address!.cep = cep;
-                            },
+                              _address!.cep = cep;
+                            }
                           ),
                         ),
                         Padding(

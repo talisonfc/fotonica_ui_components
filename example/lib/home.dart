@@ -1,6 +1,10 @@
 import 'package:example/doc_item.dart';
+import 'package:example/examples/address_examples.dart';
+import 'package:example/examples/auth_examples.dart';
 import 'package:example/examples/buttons_examples.dart';
+import 'package:example/examples/dialog_examples.dart';
 import 'package:example/examples/form_examples.dart';
+import 'package:example/examples/snackbar_examples.dart';
 import 'package:example/examples/text_field_examples.dart';
 import 'package:example/playground.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +30,23 @@ class HomeState extends State<Home> {
     DocItem(
         icon: Icon(Icons.format_indent_increase_sharp),
         name: "Forms",
-        example: FormExamples())
+        example: FormExamples()),
+    DocItem(
+        icon: Icon(Icons.comment_sharp),
+        name: "Snackbars",
+        example: SnackbarExamples()),
+    DocItem(
+        icon: Icon(Icons.perm_media_outlined),
+        name: "Dialog",
+        example: DialogExamples()),
+    DocItem(
+        icon: Icon(Icons.auto_fix_high_sharp),
+        name: "Login",
+        example: AuthExamples()),
+    DocItem(
+        icon: Icon(Icons.location_on_outlined),
+        name: "Address",
+        example: AddressExamples())
   ];
 
   late DocItem currentDocItem;

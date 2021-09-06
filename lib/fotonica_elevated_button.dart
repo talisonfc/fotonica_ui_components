@@ -48,6 +48,7 @@ class FotonicaElevatedButtonState extends State<FotonicaElevatedButton> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           if (widget.icon != null)
             Padding(
