@@ -32,24 +32,7 @@ class AuthExamplesSate extends State<AuthExamples> {
               appLogo: Icon(Icons.local_gas_station),
               onRegister: (String username, String password) async {},
               onRecover: (String email) async {}),
-        ),
-        Text("Register page"),
-        Container(
-          width: 300,
-          height: 600,
-          child: FotonicaRegisterPage(
-              appLogo: Icon(Icons.local_gas_station),
-              onRegister: (String username, String password) async {}),
-        ),
-        Text("Recover page"),
-        Container(
-          width: 300,
-          height: 600,
-          child: FotonicaForgetPasswordPage(
-            appLogo: Icon(Icons.local_gas_station),
-            onRecover: (String email) async {},
-          ),
-        ),
+        )
       ],
     );
   }

@@ -63,7 +63,7 @@ class HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Doc"),
+        title: Text("Fotonica UI Components"),
       ),
       body: Row(
         children: [

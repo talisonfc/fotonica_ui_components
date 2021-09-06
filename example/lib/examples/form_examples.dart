@@ -2,7 +2,7 @@ import 'package:annotations/annotations.dart';
 import 'package:example/example.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fotonica_ui_components/fotonica_elevated_button.dart';
+import 'package:fotonica_ui_components/fotonica_button.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
 
 part "form_examples.g.dart";
@@ -69,7 +69,7 @@ class FormExamplesState extends State<FormExamples> {
                 SizedBox(
                   height: 16,
                 ),
-                FotonicaElevatedButton(
+                FotonicaButton(
                     label: "Salvar",
                     onPressed: () {
                       if (_form.currentState!.validate()) {

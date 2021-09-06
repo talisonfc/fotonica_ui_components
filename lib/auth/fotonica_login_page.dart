@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fotonica_ui_components/auth/fotonica_forget_password_page.dart';
 import 'package:fotonica_ui_components/auth/fotonica_register_page.dart';
-import 'package:fotonica_ui_components/fotonica_elevated_button.dart';
+import 'package:fotonica_ui_components/fotonica_button.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
 import 'package:fotonica_ui_components/fotonica_warn.dart';
 
@@ -91,7 +91,7 @@ class FotonicaLoginPageState extends State<FotonicaLoginPage> {
                       message: message,
                       type: WarnType.error,
                     ),
-                  FotonicaElevatedButton(
+                  FotonicaButton(
                     label: "Entrar",
                     onPressed: () async {
                       if (_formLoginWithEmailAndPswd.currentState!.validate()) {
@@ -115,11 +115,12 @@ class FotonicaLoginPageState extends State<FotonicaLoginPage> {
                   Wrap(
                     alignment: WrapAlignment.center,
                     children: [
-                      FotonicaElevatedButton(
+                      FotonicaButton(
                           label: "Esqueceu a senha?",
                           onPressed: openForgetPasswordPage),
-                      FotonicaElevatedButton(
-                          label: "Criar conta", onPressed: openRegisterPage)
+                      FotonicaButton(
+                          label: "Criar conta",
+                          onPressed: openRegisterPage)
                     ],
                   )
                 ],
@@ -132,7 +133,7 @@ class FotonicaLoginPageState extends State<FotonicaLoginPage> {
               padding: EdgeInsets.all(16.0),
               children: [
                 Text("Outras opções de acesso"),
-                FotonicaElevatedButton(
+                FotonicaButton(
                   onPressed: () async {
                     if (widget.signInWithGoogle != null)
                       widget.signInWithGoogle!();
@@ -145,7 +146,7 @@ class FotonicaLoginPageState extends State<FotonicaLoginPage> {
                   color: Colors.red,
                   labelColor: Colors.white,
                 ),
-                // FotonicaElevatedButton(
+                // FotonicaButton(
                 //   onPressed: widget.signInWithFacebook != null
                 //       ? widget.signInWithFacebook!
                 //       : () {},

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fotonica_ui_components/fotonica_elevated_button.dart';
+import 'package:fotonica_ui_components/fotonica_button.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
 import 'package:fotonica_ui_components/fotonica_warn.dart';
 
@@ -88,7 +88,7 @@ class ForgetPasswordPageState extends State<FotonicaRegisterPage> {
                       message: message,
                       type: WarnType.error,
                     ),
-                  FotonicaElevatedButton(
+                  FotonicaButton(
                     label: "Criar",
                     onPressed: () async {
                       if (_formRegisterUser.currentState!.validate()) {
@@ -102,7 +102,7 @@ class ForgetPasswordPageState extends State<FotonicaRegisterPage> {
                       }
                     },
                   ),
-                  FotonicaElevatedButton(
+                  FotonicaButton(
                     label: "Voltar",
                     onPressed: () async {
                       Navigator.pop(context);
