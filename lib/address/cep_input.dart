@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fotonica_ui_components/address/address_controller.dart';
 import 'package:fotonica_ui_components/address/address_form.dart';
-import 'package:fotonica_ui_components/address/via_cep_address.dart';
+import 'package:fotonica_ui_components/address/data/models/via_cep_address.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
 import 'package:fotonica_ui_components/util/fotonica_snackbar.dart';
 

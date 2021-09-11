@@ -1,7 +1,7 @@
 
 
 import 'package:dio/dio.dart';
-import 'package:fotonica_ui_components/address/via_cep_address.dart';
+import 'package:fotonica_ui_components/address/data/models/via_cep_address.dart';
 
 class AddressController {
   Dio viaCepApi = Dio(BaseOptions(baseUrl: "https://viacep.com.br/ws/"));

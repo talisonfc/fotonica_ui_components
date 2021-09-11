@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fotonica_ui_components/address/via_cep_address.dart';
+import 'package:fotonica_ui_components/address/data/models/via_cep_address.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
 
 class AddressForm extends StatelessWidget {

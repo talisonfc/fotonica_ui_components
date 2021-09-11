@@ -1,6 +1,8 @@
 
 
-class ViaCepAddress {
+import 'package:fotonica_ui_components/address/domain/entities/address.dart';
+
+class AddressModel extends Address {
   String? cep;
   String? logradouro;
   String? bairro;
@@ -13,7 +15,7 @@ class ViaCepAddress {
   String? numero;
   String? complemento;
 
-  ViaCepAddress(
+  AddressModel(
       {this.cep,
       this.localidade,
       this.bairro,
@@ -26,7 +28,7 @@ class ViaCepAddress {
       this.numero,
       this.complemento});
 
-  ViaCepAddress.fromJson(Map<String, dynamic> json){
+  AddressModel.fromJson(Map<String, dynamic> json){
     cep = json["cep"];
     logradouro = json["logradouro"];
     bairro = json["bairro"];
