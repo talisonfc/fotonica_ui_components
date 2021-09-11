@@ -8,9 +8,14 @@ import 'package:example/examples/snackbar_examples.dart';
 import 'package:example/examples/text_field_examples.dart';
 import 'package:example/playground.dart';
 import 'package:flutter/material.dart';
-import 'package:fotonica_ui_components/fotonica_text_field.dart';
+import 'package:fotonica_ui_components/fotonica_button.dart';
 
 class Home extends StatefulWidget {
+  final Function(ThemeMode mode) onChangeThemeMode;
+  final ThemeMode themeMode;
+
+  Home({required this.onChangeThemeMode, required this.themeMode});
+
   @override
   State<StatefulWidget> createState() {
     return HomeState();
@@ -64,6 +69,15 @@ class HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Fotonica UI Components"),
+        actions: [
+          FotonicaButton(onPressed: ()async{}, label: "Dark Mode",),
+          Switch(
+            value: widget.themeMode == ThemeMode.dark,
+            onChanged: (v) {
+              widget.onChangeThemeMode(v ? ThemeMode.dark : ThemeMode.light);
+            },
+          )
+        ],
       ),
       body: Row(
         children: [
@@ -99,44 +113,6 @@ class HomeState extends State<Home> {
               ],
             ),
           )
-        ],
-      ),
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Documentation"),
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          // Container(
-          //     decoration: BoxDecoration(color: Colors.black),
-          //     child: Text(
-          //       homeGen.sourceCode,
-          //       style: TextStyle(color: Colors.white),
-          //     )),
-          // FotonicaTextField(
-          //     controller: TextEditingController(text: homeGen.sourceCode),
-          //     maxLines: 10,
-          //     filled: false,
-          //     onChange: (v) {}),
-          Wrap(
-            children: [
-              Text("FotonicaTextField"),
-              FotonicaTextField(
-                  label: "Label",
-                  placeholder: "Placeholder",
-                  controller: TextEditingController(),
-                  onChange: (v) {})
-            ],
-          ),
-          FotonicaTextField(
-              label: "Label",
-              prefixIcon: Icon(Icons.search),
-              placeholder: "Placeholder",
-              controller: TextEditingController(),
-              onChange: (v) {})
         ],
       ),
     );
