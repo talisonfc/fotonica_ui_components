@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:fotonica_ui_components/address/cep_input.dart';
 import 'package:fotonica_ui_components/address/via_cep_address.dart';
@@ -25,14 +24,20 @@ class FotonicaAddressState extends State<FotonicaAddress> {
   }
 
   void goToAddressEditor(ViaCepAddress address) {
+    Color? titleColor = Theme.of(context).textTheme.headline6!.color;
+
     Navigator.push(context, MaterialPageRoute(builder: (ctx) {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Endereço"
+            "Endereço",
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: titleColor),
           ),
           iconTheme: IconThemeData(
-            color: Colors.black, //change your color here
+            color: titleColor
           ),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,

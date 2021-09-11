@@ -109,7 +109,7 @@ class FotonicaLoginPageState extends State<FotonicaLoginPage> {
                         }
                       }
                     },
-                    color: Colors.grey[200],
+                    // color: Colors.grey[200],
                     // labelColor: Colors.white,
                   ),
                   Wrap(

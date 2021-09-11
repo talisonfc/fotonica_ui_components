@@ -44,10 +44,12 @@ class FotonicaButtonState extends State<FotonicaButton> {
           });
         }
       },
-      style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-          backgroundColor: MaterialStateProperty.all(widget.color),
-          shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)))),
+      style: Theme.of(context).elevatedButtonTheme.style != null
+          ? Theme.of(context).elevatedButtonTheme.style!.copyWith(
+              backgroundColor: MaterialStateProperty.all(widget.color),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))))
+          : null,
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
