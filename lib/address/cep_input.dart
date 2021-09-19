@@ -1,16 +1,18 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fotonica_ui_components/address/address_controller.dart';
+import 'package:fotonica_ui_components/address/_exports.dart';
 import 'package:fotonica_ui_components/address/address_form.dart';
-import 'package:fotonica_ui_components/address/data/models/via_cep_address.dart';
+import 'package:fotonica_ui_components/address/data/repositories/address_repository_impl.dart';
+import 'package:fotonica_ui_components/address/external/datasources/via_cep_datasource.dart';
 import 'package:fotonica_ui_components/fotonica_text_field.dart';
 import 'package:fotonica_ui_components/util/fotonica_snackbar.dart';
 
 class CepInput extends StatefulWidget {
-  final Function(ViaCepAddress? address)? onChange;
-  final ViaCepAddress? address;
+  final Function(Address? address)? onChange;
+  final Address? address;
 
   CepInput({this.onChange, this.address});
 
@@ -24,30 +26,37 @@ enum AddressState { cep, requestAddressByCep, form }
 
 class CepInputState extends State<CepInput> {
   GlobalKey<FormState> _cepState = GlobalKey<FormState>();
-  ViaCepAddress? _address;
+  Address? _address;
   StreamController<AddressState> _steps = StreamController();
-  AddressController controller = AddressController();
+  IFindAddressByCep findAddressByCep = FindAddressByCep(
+    addressRepository: AddressRepositoryImpl(
+      addressDatasource: ViaCepDatasource(
+        dio: Dio(BaseOptions(baseUrl: "https://viacep.com.br")),
+      ),
+    ),
+  );
 
   @override
   void initState() {
     super.initState();
-    _address = widget.address != null ? widget.address : ViaCepAddress();
+    _address = widget.address;
 
     if (widget.address != null &&
-        _address!.cep != null &&
-        _address!.cep!.isNotEmpty)
+        _address!.cep.isNotEmpty)
       _steps.add(AddressState.form);
     else
       _steps.add(AddressState.cep);
   }
 
-  void readAddresByCep() {
-    if(_address!.cep != null && _address!.cep!.isNotEmpty) {
-      controller.readAddresByCep(_address!.cep!).then((address) {
+  void readAddresByCep(String cep) {
+    if (_address!.cep.isNotEmpty) {
+      findAddressByCep(cep).then((address) {
         _address = address;
         _steps.add(AddressState.form);
       }).catchError((err) {
-        _address = ViaCepAddress();
+        print(err);
+        _address =
+            Address(cep: "", street: "", city: "", country: "", state: "");
         _steps.add(AddressState.form);
         FotonicaSnackbar.erro(
             context: context, content: Text("Endereço não encontrado!"));
@@ -102,18 +111,17 @@ class CepInputState extends State<CepInput> {
                         Form(
                           key: _cepState,
                           child: FotonicaTextField(
-                            initialValue: _address?.cep,
-                            placeholder: "CEP",
-                            type: TextInputType.number,
-                            validator: (cep) {
-                              if (cep == null || cep.isEmpty)
-                                return "Digite um CEP valido";
-                              return null;
-                            },
-                            onChange: (cep) {
-                              _address!.cep = cep;
-                            }
-                          ),
+                              initialValue: _address?.cep,
+                              placeholder: "CEP",
+                              type: TextInputType.number,
+                              validator: (cep) {
+                                if (cep == null || cep.isEmpty)
+                                  return "Digite um CEP valido";
+                                return null;
+                              },
+                              onChange: (cep) {
+                                _address!.cep = cep;
+                              }),
                         ),
                         Padding(
                           padding: EdgeInsets.only(
@@ -122,7 +130,7 @@ class CepInputState extends State<CepInput> {
                               onPressed: () {
                                 if (_cepState.currentState!.validate()) {
                                   _steps.add(AddressState.requestAddressByCep);
-                                  readAddresByCep();
+                                  readAddresByCep(_address!.cep);
                                 }
                               },
                               child: Text(
@@ -154,12 +162,13 @@ class CepInputState extends State<CepInput> {
                       ),
                     );
                   return AddressForm(
-                    viaCepAddress: _address,
+                    address: _address,
                     onChange: (address) {
                       if (widget.onChange != null) {
                         widget.onChange!(_address);
                       }
                     },
+                    searchByCep: readAddresByCep,
                   );
                 case ConnectionState.done:
                   {

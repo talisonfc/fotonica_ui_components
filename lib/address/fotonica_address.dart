@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fotonica_ui_components/address/_exports.dart';
 import 'package:fotonica_ui_components/address/cep_input.dart';
-import 'package:fotonica_ui_components/address/data/models/via_cep_address.dart';
+import 'address_extension.dart';
 
 class FotonicaAddress extends StatefulWidget {
-  final ViaCepAddress viaCepAddress;
-  final Function(ViaCepAddress? address) onChange;
+  final Address viaCepAddress;
+  final Function(Address? address) onChange;
 
   FotonicaAddress({required this.viaCepAddress, required this.onChange});
 
@@ -23,7 +24,7 @@ class FotonicaAddressState extends State<FotonicaAddress> {
     // this.address = widget.viaCepAddress;
   }
 
-  void goToAddressEditor(ViaCepAddress address) {
+  void goToAddressEditor(Address address) {
     Color? titleColor = Theme.of(context).textTheme.headline6!.color;
 
     Navigator.push(context, MaterialPageRoute(builder: (ctx) {
@@ -46,7 +47,7 @@ class FotonicaAddressState extends State<FotonicaAddress> {
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: CepInput(
             onChange: widget.onChange,
-            address: address,
+            address: address
           ),
         ),
       );
@@ -62,7 +63,7 @@ class FotonicaAddressState extends State<FotonicaAddress> {
         style: Theme.of(context).textTheme.bodyText2,
       ),
       subtitle:
-          Text(widget.viaCepAddress.complemento ?? "Complemento não definido"),
+          Text(widget.viaCepAddress.complement ?? "Complemento não definido"),
       trailing: IconButton(
         icon: Icon(Icons.location_on_outlined),
         onPressed: () {

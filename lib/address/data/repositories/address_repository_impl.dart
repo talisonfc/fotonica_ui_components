@@ -7,7 +7,7 @@ class AddressRepositoryImpl implements IAddressRepository {
 
   final IAddressDatasource addressDatasource;
 
-  AddressRepositoryImpl(this.addressDatasource);
+  AddressRepositoryImpl({required this.addressDatasource});
 
   @override
   Future<Address> findAddressByCep(String cep) {

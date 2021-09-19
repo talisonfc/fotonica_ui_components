@@ -1,8 +1,8 @@
 import 'package:annotations/annotations.dart';
 import 'package:example/example.dart';
 import 'package:flutter/material.dart';
+import 'package:fotonica_ui_components/address/_exports.dart';
 import 'package:fotonica_ui_components/address/fotonica_address.dart';
-import 'package:fotonica_ui_components/address/via_cep_address.dart';
 
 part 'address_examples.g.dart';
 
@@ -18,7 +18,7 @@ class AddressExamples extends Example {
 }
 
 class AddressExamplesState extends State<AddressExamples> {
-  ViaCepAddress viaCepAddress = ViaCepAddress();
+  Address viaCepAddress = Address(cep: '', street: '', city: '', country: '', state: '');
 
   @override
   Widget build(BuildContext context) {

@@ -1,62 +1,50 @@
-
-
 import 'package:fotonica_ui_components/address/domain/entities/address.dart';
 
 class AddressModel extends Address {
-  String? cep;
-  String? logradouro;
-  String? bairro;
-  String? localidade;
-  String? uf;
-  String? ibge;
-  String? gia;
-  String? ddd;
-  String? siafi;
-  String? numero;
-  String? complemento;
-
   AddressModel(
-      {this.cep,
-      this.localidade,
-      this.bairro,
-      this.logradouro,
-      this.uf,
-      this.ibge,
-      this.ddd,
-      this.gia,
-      this.siafi,
-      this.numero,
-      this.complemento});
+      {required String cep,
+      required String street,
+      String? complement,
+      required String city,
+      required String country,
+      required String state,
+      String number = "SN",
+      String? district,
+      double? lat,
+      double? lng})
+      : super(
+            cep: cep,
+            street: street,
+            complement: complement,
+            city: city,
+            country: country,
+            state: state,
+            number: number,
+            district: district,
+            lat: lat,
+            lng: lng);
 
-  AddressModel.fromJson(Map<String, dynamic> json){
-    cep = json["cep"];
-    logradouro = json["logradouro"];
-    bairro = json["bairro"];
-    localidade = json["localidade"];
-    uf = json["uf"];
-    ibge = json["ibge"];
-    ddd = json["ddd"];
-    gia = json["gia"];
-    siafi = json["siafi"];
+  factory AddressModel.fromJson(Map<String, dynamic> json) {
+    return AddressModel(
+        cep: json["cep"],
+        street: json["logradouro"],
+        district: json["bairro"],
+        city: json["localidade"],
+        state: json["uf"],
+        country: "Brasil");
   }
 
   String? get fullAddress {
-
-    if(logradouro != null) {
-      String address = "";
-      address += logradouro!;
-      address += ", ${numero ?? "SN"}";
-      address += ", $bairro";
-      address += ", $cep";
-      address += ", $localidade";
-      address += ", $uf";
-      return address;
-    }
+    // if (logradouro != null) {
+    //   String address = "";
+    //   address += logradouro!;
+    //   address += ", ${numero ?? "SN"}";
+    //   address += ", $bairro";
+    //   address += ", $cep";
+    //   address += ", $localidade";
+    //   address += ", $uf";
+    //   return address;
+    // }
     return null;
-  }
-
-  @override
-  String toString() {
-    return 'ViaCepAddress{cep: $cep, logradouro: $logradouro, bairro: $bairro, localidade: $localidade, uf: $uf, ibge: $ibge, gia: $gia, ddd: $ddd, siafi: $siafi}';
   }
 }

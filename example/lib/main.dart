@@ -48,20 +48,20 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(Colors.green),
-          backgroundColor: MaterialStateProperty.all(Colors.green),
-          padding: MaterialStateProperty.all(
-            EdgeInsets.all(16),
-          ),
-        ),
-      ),
-      textTheme: TextTheme(
-        caption: TextStyle(fontSize: 12),
-        bodyText1: TextStyle(fontSize: 16),
-        bodyText2: TextStyle(fontSize: 14),
-      ),
+      // elevatedButtonTheme: ElevatedButtonThemeData(
+      //   style: ButtonStyle(
+      //     foregroundColor: MaterialStateProperty.all(Colors.green),
+      //     backgroundColor: MaterialStateProperty.all(Colors.green),
+      //     padding: MaterialStateProperty.all(
+      //       EdgeInsets.all(16),
+      //     ),
+      //   ),
+      // ),
+      // textTheme: TextTheme(
+      //   caption: TextStyle(fontSize: 12),
+      //   bodyText1: TextStyle(fontSize: 16),
+      //   bodyText2: TextStyle(fontSize: 14),
+      // ),
     );
   }
 

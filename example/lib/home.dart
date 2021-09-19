@@ -1,5 +1,6 @@
 import 'package:example/doc_item.dart';
 import 'package:example/examples/address_examples.dart';
+import 'package:example/examples/animation/animated_switcher_example.dart';
 import 'package:example/examples/auth_examples.dart';
 import 'package:example/examples/buttons_examples.dart';
 import 'package:example/examples/dialog_examples.dart';
@@ -51,7 +52,11 @@ class HomeState extends State<Home> {
     DocItem(
         icon: Icon(Icons.location_on_outlined),
         name: "Address",
-        example: AddressExamples())
+        example: AddressExamples()),
+    // DocItem(
+    //     icon: Icon(Icons.location_on_outlined),
+    //     name: "AnimatedSwitcher",
+    //     example: AnimatedSwitcherExample())
   ];
 
   late DocItem currentDocItem;
